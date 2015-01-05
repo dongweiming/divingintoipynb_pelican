@@ -95,15 +95,8 @@ def new_post(title, slug=None, tags='', categories='',
     month_part = now.strftime("%Y-%m")
     post_date = now.strftime("%Y-%m-%d")
 
-    params = dict(
-        date=post_date,
-        modified_date=post_date,
-        title=title,
-        slug=slug,
-        categories=categories,
-        summary=summary,
-        author=author
-    )
+    params = get_params(title, slug, tags, categories, summary, author,
+                        post_date)
 
     out_file = "content/{}/{}.md".format(month_part, slug)
     local("mkdir -p '{}' || true".format(os.path.dirname(out_file)))
@@ -130,3 +123,41 @@ def render(destination, **kwargs):
     puts("Rendering: {}".format(template, destination))
     with open(destination, "w") as output:
         output.write(text.encode("utf-8"))
+
+
+def get_params(title, slug, tags, categories, summary, author, post_date):
+    params = dict(
+        date=post_date,
+        modified_date=post_date,
+        title=title,
+        slug=slug,
+        categories=categories,
+        summary=summary,
+        author=author
+    )
+    return params
+
+
+def import_ipynb(filepath, title, slug=None, tags='', categories='',
+                 summary='', author='dongweiming', overwrite="no"):
+    if slug is None:
+        slug = slugify(title)
+    now = datetime.datetime.now()
+    month_part = now.strftime("%Y-%m")
+    post_date = now.strftime("%Y-%m-%d")
+
+    params = get_params(title, slug, tags, categories, summary, author,
+                        post_date)
+
+    out_file = "content/{}/{}.ipynb".format(month_part, slug)
+    filepath = os.path.expanduser(filepath)
+    local("mkdir -p '{}' || true".format(os.path.dirname(out_file)))
+    if not os.path.exists(filepath):
+        print("Error: {} not exists!".format(filepath))
+        return
+    if not os.path.exists(out_file) or overwrite.lower() == "yes":
+        local("cp {} {}".format(filepath, out_file))
+        render(out_file + '-meta', **params)
+    else:
+        print("{} already exists. Pass 'overwrite=yes' to destroy it.".
+              format(out_file))
