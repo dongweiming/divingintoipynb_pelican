@@ -2,7 +2,7 @@
 <html lang="cn"
 >
 <head>
-    <title>nbconvert - Diving into IPython notebook</title>
+    <title>highchart - Diving into IPython notebook</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -176,7 +176,7 @@ init_mathjax = function() {
 init_mathjax();
 </script>
 
-<link rel="canonical" href="http://dongweiming.github.io/divingintoipynb_pelican/nbconvert.html">
+<link rel="canonical" href="http://dongweiming.github.io/divingintoipynb_pelican/highchart.html">
 
         <meta name="author" content="dongweiming" />
         <meta name="keywords" content="ipython,notebook" />
@@ -239,10 +239,10 @@ Diving into IPython notebook            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://dongweiming.github.io/divingintoipynb_pelican/nbconvert.html"
+                    <a href="http://dongweiming.github.io/divingintoipynb_pelican/highchart.html"
                        rel="bookmark"
-                       title="Permalink to nbconvert">
-                        nbconvert
+                       title="Permalink to highchart">
+                        highchart
                     </a>
                 </h1>
             </header>
@@ -267,115 +267,9 @@ Diving into IPython notebook            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[9]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.nbformat</span> <span class="kn">import</span> <span class="n">current</span> <span class="k">as</span> <span class="n">nbformat</span>
-<span class="kn">from</span> <span class="nn">pygments.formatters</span> <span class="kn">import</span> <span class="n">HtmlFormatter</span>
-<span class="kn">from</span> <span class="nn">IPython.nbconvert.exporters</span> <span class="kn">import</span> <span class="n">HTMLExporter</span>
-<span class="kn">from</span> <span class="nn">IPython.config</span> <span class="kn">import</span> <span class="n">Config</span>
-<span class="kn">from</span> <span class="nn">IPython.nbconvert.filters.highlight</span> <span class="kn">import</span> <span class="n">_pygments_highlight</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span><span class="p">,</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[10]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;highchart.ipynb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">double11_notebook</span> <span class="o">=</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">reads_json</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[11]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">my_highlight</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s">&#39;ipython&#39;</span><span class="p">):</span>
-    <span class="n">formatter</span> <span class="o">=</span> <span class="n">HtmlFormatter</span><span class="p">(</span><span class="n">cssclass</span><span class="o">=</span><span class="s">&#39;highlight-ipynb&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_pygments_highlight</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">formatter</span><span class="p">,</span> <span class="n">language</span><span class="p">)</span>
-        
-<span class="n">c</span> <span class="o">=</span> <span class="n">Config</span><span class="p">({</span><span class="s">&#39;CSSHtmlHeaderTransformer&#39;</span><span class="p">:</span>
-                    <span class="p">{</span><span class="s">&#39;enabled&#39;</span><span class="p">:</span><span class="bp">True</span><span class="p">,</span> <span class="s">&#39;highlight_class&#39;</span><span class="p">:</span><span class="s">&#39;highlight-ipynb&#39;</span><span class="p">}})</span>
-
-<span class="n">exportHtml</span> <span class="o">=</span> <span class="n">HTMLExporter</span><span class="p">(</span> <span class="n">config</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;highlight&#39;</span><span class="p">:</span> <span class="n">my_highlight</span><span class="p">}</span> <span class="p">)</span>
-<span class="n">body</span><span class="p">,</span> <span class="n">resources</span> <span class="o">=</span> <span class="n">exportHtml</span><span class="o">.</span><span class="n">from_notebook_node</span><span class="p">(</span><span class="n">double11_notebook</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[12]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">jinja2</span> <span class="kn">import</span> <span class="n">DictLoader</span>
-
-<span class="n">dl</span> <span class="o">=</span> <span class="n">DictLoader</span><span class="p">({</span><span class="s">&#39;full.tpl&#39;</span><span class="p">:</span> 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">{%- extends &#39;basic.tpl&#39; -%} </span>
-
-<span class="sd">{% block footer %}</span>
-<span class="sd">FOOOOOOOOTEEEEER</span>
-<span class="sd">{% endblock footer %}</span>
-<span class="sd">&quot;&quot;&quot;</span><span class="p">})</span>
-
-<span class="n">exportHtml</span> <span class="o">=</span> <span class="n">HTMLExporter</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="bp">None</span> <span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;highlight&#39;</span><span class="p">:</span> <span class="n">my_highlight</span><span class="p">},</span> <span class="n">extra_loaders</span><span class="o">=</span><span class="p">[</span><span class="n">dl</span><span class="p">])</span>
-<span class="n">body</span><span class="p">,</span> <span class="n">resources</span> <span class="o">=</span> <span class="n">exportHtml</span><span class="o">.</span><span class="n">from_notebook_node</span><span class="p">(</span><span class="n">double11_notebook</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[13]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">HTML</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">
-    Out[13]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
+                
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -384,7 +278,7 @@ In&nbsp;[4]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
@@ -408,7 +302,7 @@ In&nbsp;[5]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">HTML</span><span class="p">(</span><span class="s">&#39;&#39;&#39;</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">HTML</span><span class="p">(</span><span class="s">&#39;&#39;&#39;</span>
 <span class="s">&lt;script src=&quot;http://code.highcharts.com/highcharts.js&quot;&gt;&lt;/script&gt;</span>
 <span class="s">&lt;script src=&quot;http://code.highcharts.com/modules/exporting.js&quot;&gt;&lt;/script&gt;</span>
 
@@ -539,11 +433,11 @@ In&nbsp;[5]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[6]:
+In&nbsp;[1]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
@@ -562,20 +456,20 @@ In&nbsp;[6]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[7]:
+In&nbsp;[2]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
-    <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">chartjs</span><span class="o">:</span> <span class="s1">&#39;//code.highcharts.com/highcharts&#39;</span><span class="p">,</span>
-        <span class="nx">highcharts</span><span class="o">:</span> <span class="s1">&#39;//code.highcharts.com/modules/exporting&#39;</span><span class="p">,</span>
-        <span class="nx">sandsignika</span><span class="o">:</span> <span class="s1">&#39;//www.highcharts.com/js/themes/sand-signika&#39;</span><span class="p">,</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">javascript</span>
+<span class="n">require</span><span class="o">.</span><span class="n">config</span><span class="p">({</span>
+    <span class="n">paths</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">chartjs</span><span class="p">:</span> <span class="s">&#39;//code.highcharts.com/highcharts&#39;</span><span class="p">,</span>
+        <span class="n">highcharts</span><span class="p">:</span> <span class="s">&#39;//code.highcharts.com/modules/exporting&#39;</span><span class="p">,</span>
+        <span class="n">sandsignika</span><span class="p">:</span> <span class="s">&#39;//www.highcharts.com/js/themes/sand-signika&#39;</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="nx">shim</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">highcharts</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s1">&#39;deps&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;chartjs&#39;</span><span class="p">,</span> <span class="s1">&#39;sandsignika&#39;</span><span class="p">]</span>
+    <span class="n">shim</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">highcharts</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;deps&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;chartjs&#39;</span><span class="p">,</span> <span class="s">&#39;sandsignika&#39;</span><span class="p">]</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">});</span>
@@ -618,11 +512,11 @@ require.config({
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[8]:
+In&nbsp;[3]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">display_chart_highcharts</span><span class="p">(</span><span class="n">show_javascript</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">div</span><span class="p">):</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">display_chart_highcharts</span><span class="p">(</span><span class="n">show_javascript</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">div</span><span class="p">):</span>
     <span class="n">template</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
 <span class="s">    require([&quot;highcharts&quot;], function() {</span>
 <span class="s">        $(&#39;#chart_highcharts&#39;).highcharts({</span>
@@ -764,16 +658,11 @@ In&nbsp;[8]:
 </div>
 
 </div>
-FOOOOOOOOTEEEEER
+    </div>
+  </div>
+</body>
+</html>
 
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div></p>
             </div>
             <!-- /.entry-content -->
         </article>
