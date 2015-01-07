@@ -3,6 +3,7 @@ import fabric.contrib.project as project
 import os
 import re
 import sys
+import glob
 import datetime
 import SimpleHTTPServer
 import SocketServer
@@ -161,3 +162,19 @@ def import_ipynb(filepath, title, slug=None, tags='', categories='',
     else:
         print("{} already exists. Pass 'overwrite=yes' to destroy it.".
               format(out_file))
+
+
+def edit(article):
+    article_files = glob.glob('content/*/{}.*'.format(article))
+    if not article_files:
+        print("Error: article {} not exists!".format(article))
+        return
+
+    if article_files[0].endswith(('md', 'markdown')):
+        open_file = article_files[0]
+    elif article_files[0].endswith('ipynb'):
+        open_file = article_files[1]
+    else:
+        print("Error: article type[only support markdown/ipynb")
+        return
+    local("$PELICAN_EDITOR {}".format(open_file))

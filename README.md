@@ -20,4 +20,6 @@ Run it
     `{% notebook xx/path/yy.ipynb %}`
     # 2. use the pure ipynb
     fab import_ipynb:~/diving_into_ipynb/python_2/highchart.ipynb,"ipynb title"
-    # edit `content/2015-01/ipynb-title.ipynb-meta`
+    # edit `content/2015-01/ipynb-title.ipynb-meta`. also you can use `fab edit:article`
+    export PELICAN_EDITOR='emacsclient'
+    # fab edit:double11
