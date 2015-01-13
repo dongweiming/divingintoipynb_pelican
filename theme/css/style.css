@@ -160,8 +160,8 @@ figure.floatcenter, .align-center {
 
 div.prompt {
     text-align: left !important;
-    float: left;
-    margin-left: -80px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 div.cell {
