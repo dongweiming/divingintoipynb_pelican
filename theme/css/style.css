@@ -158,16 +158,12 @@ figure.floatcenter, .align-center {
     padding: 0px;
 }
 
-pre.ipynb {
-    width: 604px;
-}
-
-.output_subarea {
-    width: 607px;
-}
-
 div.prompt {
     text-align: left !important;
     float: left;
     margin-left: -80px;
+}
+
+div.cell {
+    width: 802px;
 }
