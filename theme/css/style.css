@@ -164,6 +164,10 @@ div.prompt {
     vertical-align: top;
 }
 
+div.inner_cell {
+    float: right;
+}
+
 div.cell {
     width: 802px;
 }
